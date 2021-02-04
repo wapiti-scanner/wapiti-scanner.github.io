@@ -152,6 +152,7 @@ More detail on each option can be found in the following sections.</p>
 <li><code>--max-links-per-page</code> <var>MAX_LINKS_PER_PAGE</var></li>
 <li><code>--max-files-per-dir</code> <var>MAX_FILES_PER_DIR</var></li>
 <li><code>--max-scan-time</code> <var>MAX_SCAN_TIME</var></li>
+<li><code>--max-attack-time</code> <var>MAX_ATTACK_TIME</var></li>
 <li><code>--max-parameters</code> <var>MAX</var></li>
 <li><code>-S</code>, <code>--scan-force</code> {paranoid,sneaky,polite,normal,aggressive,insane}</li>
 </ul>
@@ -310,6 +311,9 @@ Note that an URL with a trailing slash in the path is not necessarily a folder w
 Like the previous option it should be useful only in certain situations.</p></li>
 <li><p><code>--max-scan-time</code> <var>SECONDS</var><br />
 Stop the scan after SECONDS seconds if it is still running.<br />
+Should be useful to automatise scanning from another process (continuous testing).</p></li>
+<li><p><code>--max-attack-time</code> <var>SECONDS</var><br />
+Each attack module will stop after SECONDS seconds if it is still running.<br />
 Should be useful to automatise scanning from another process (continuous testing).</p></li>
 <li><p><code>--max-parameters</code> <var>MAX</var><br />
 URLs and forms having more than MAX input parameters will be discarded before launching attack modules.</p></li>
