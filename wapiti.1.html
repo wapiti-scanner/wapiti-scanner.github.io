@@ -126,7 +126,7 @@ More detail on each option can be found in the following sections.</p>
 <ul>
 <li><code>-p</code> <var>PROXY_URL</var></li>
 <li><code>-a</code> <var>CREDENTIALS</var></li>
-<li><code>--auth-type</code> {basic,digest,kerberos,ntlm}</li>
+<li><code>--auth-type</code> {basic,digest,kerberos,ntlm,post}</li>
 <li><code>-c</code> <var>COOKIE_FILE</var></li>
 </ul>
 
@@ -138,6 +138,8 @@ More detail on each option can be found in the following sections.</p>
 <li><code>--resume-crawl</code></li>
 <li><code>--flush-attacks</code></li>
 <li><code>--flush-session</code></li>
+<li><code>--store-session</code></li>
+<li><code>--store-config</code></li>
 </ul>
 
 
@@ -188,6 +190,7 @@ More detail on each option can be found in the following sections.</p>
 <ul>
 <li><code>--no-bugreport</code></li>
 <li><code>--version</code></li>
+<li><code>--update</code></li>
 <li><code>-h</code></li>
 </ul>
 
@@ -242,11 +245,12 @@ The given URL will be used as a proxy for HTTP and HTTPS requests. This URL can 
 <li><p><code>--tor</code><br />
 Make Wapiti use a Tor listener (same as --proxy socks://127.0.0.1:9050/)</p></li>
 <li><p><code>-a</code>, <code>--auth-cred</code> <var>CREDENTIALS</var><br />
-Set credentials to use for HTTP authentication on the target.<br />
+Set credentials to use for authentication on the target.<br />
 Given value should be in the form login%password (% is used as a separator)</p></li>
 <li><p><code>--auth-type</code> <var>TYPE</var><br />
-Set the authentication mechanism to use. Valid choices are basic, digest, kerberos and ntlm.<br />
-Kerberos and NTLM authentication may require you to install additionnal Python modules.</p></li>
+Set the authentication mechanism to use. Valid choices are basic, digest, kerberos, ntlm and post.<br />
+Kerberos and NTLM authentication may require you to install additionnal Python modules.<br />
+Post authentication could be combined with <code>-s</code> to specify where to find the login form.</p></li>
 <li><p><code>-c</code>, <code>--cookie</code> <var>COOKIE_FILE</var><br />
 Load cookies from a Wapiti JSON cookie file. See <span class="man-ref">wapiti-getcookie<span class="s">(1)</span></span> for more informations.</p></li>
 </ul>
@@ -270,8 +274,10 @@ Forget everything about discovered vulnerabilities and which URL was attacked by
 Only the scan (crawling) informations will be kept.</p></li>
 <li><p><code>--flush-session</code><br />
 Forget everything about the target for the given scope.</p></li>
-<li><p><code>--store-session</code>
-Specify an alternative path for storing session (.db and .pkl) files</p></li>
+<li><p><code>--store-session</code> <var>PATH</var><br />
+Specify an alternative path for storing session (.db and .pkl) files.</p></li>
+<li><p><code>--store-config</code> <var>PATH</var><br />
+  Specify an alternative path for storing particular module (apps.json and nikto_db) files.</p></li>
 </ul>
 
 
@@ -282,7 +288,8 @@ Specify an alternative path for storing session (.db and .pkl) files</p></li>
 If for some reasons, Wapiti doesn't find any (or enough) URLs from the base URL you can still add URLs to start the scan with.<br />
 Those URLs will be given a depth of 0, just like the base URL.<br />
 This option can be called several times.<br />
-You can also give it a filename and Wapiti will read URLs from the given file (must be UTF-8 encoded), one URL per line.</p></li>
+You can also give it a filename and Wapiti will read URLs from the given file (must be UTF-8 encoded), one URL per line.<br />
+Combined with <code>--auth-type=post</code>, Wapiti will try to find a login form on the first URL provided and to authenticate with the given credentials.</p></li>
 <li><p><code>-x</code>, <code>--exclude</code> <var>URL</var><br />
 Prevent the given URL from being scanned. Common use is to exclude the logout URL to prevent the destruction of session cookies (if you specified a cookie file with --cookie).<br />
 This option can be applied several times. Excluded URL given as a parameter can contain wildcards for basic pattern matching.</p></li>
@@ -391,6 +398,9 @@ Print Wapiti version then exit.</p></li>
 <li><p><code>--no-bugreport</code><br />
 If a Wapiti attack module crashes of a non-caught exception a bug report is generated and sent for analysis in order to improve Wapiti reliability. Note that only the content of the report is kept.<br />
 You can still prevent reports from being sent using that option.</p></li>
+<li><p><code>--update</code><br />
+Update particular Wapiti modules (download a fresh version of the apps.json and nikto_db files) then exit.<br />
+You can combine it with <code>--store-config</code> to specify where to store downloaded files.</p></li>
 <li><p><code>-h</code>, <code>--help</code><br />
 Show detailed options description. More details are available in this manpage though.</p></li>
 </ul>
@@ -411,11 +421,11 @@ Please read the COPYING file for more information.</p>
 
 <h2 id="WEBSITE">WEBSITE</h2>
 
-<p>http://wapiti.sourceforge.io/</p>
+<p>http://wapiti-scanner.github.io/</p>
 
 <h2 id="BUG-REPORTS">BUG REPORTS</h2>
 
-<p>If you find a bug in Wapiti please report it to https://sourceforge.net/p/wapiti/bugs/</p>
+<p>If you find a bug in Wapiti please report it to https://github.com/wapiti-scanner/wapiti/issues</p>
 
 <h2 id="SEE-ALSO">SEE ALSO</h2>
 
