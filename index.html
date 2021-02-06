@@ -157,6 +157,10 @@
               <li>Open Redirects</li>
               <li>Uncommon HTTP methods that can be allowed (PUT)</li>
               <li>CSRF (Cross Site Request Forgery)</li>
+              <li>Basic CSP Evaluator </li>
+              <li>Brute Force login form (using a dictionary list)</li>
+              <li>Cheking HTTP security headers</li>
+              <li>Checking cookie security flags (secure and httponly flags)</li>
             </ul>
 
             <p>A buster module also allows to brute force directories and files names on the target webserver.</p>
@@ -219,6 +223,7 @@
   ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝     ╚═╝   ╚═╝   ╚═╝╚═════╝
 Wapiti-3.0.3 (wapiti.sourceforge.net)
 usage: wapiti [-h] [-u URL] [--scope {page,folder,domain,url,punk}]
+
               [-m MODULES_LIST] [--list-modules] [--update] [-l LEVEL]
               [-p PROXY_URL] [--tor] [-a CREDENTIALS]
               [--auth-type {basic,digest,kerberos,ntlm,post}]
@@ -227,7 +232,7 @@ usage: wapiti [-h] [-u URL] [--scope {page,folder,domain,url,punk}]
               [--store-config] [-s URL] [-x URL] [-r PARAMETER]
               [--skip PARAMETER] [-d DEPTH] [--max-links-per-page MAX]
               [--max-files-per-dir MAX] [--max-scan-time SECONDS]
-              [--max-parameters MAX] [-S FORCE]
+              [--max-attack-time SECONDS] [--max-parameters MAX] [-S FORCE]
               [-t SECONDS] [-H HEADER] [-A AGENT] [--verify-ssl {0,1}]
               [--color] [-v LEVEL] [-f FORMAT] [-o OUPUT_PATH]
               [--external-endpoint EXTERNAL_ENDPOINT_URL]
