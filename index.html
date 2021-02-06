@@ -139,7 +139,7 @@
             injecting payloads to see if a script is vulnerable.</p>
 
             <div class="clear"></div>
-            <h3>What's new in Wapiti 3.0.3 ? Take a look <a href="https://sourceforge.net/p/wapiti/news/2020/02/wapiti-303/">here</a>.</h3>
+            <h3>What's new in Wapiti 3.0.3 ? Take a look <a href="https://github.com/wapiti-scanner/wapiti/blob/master/doc/ChangeLog_Wapiti">here</a>.</h3>
 
             <p>Wapiti can detect the following vulnerabilities :</p>
             <ul>
@@ -156,6 +156,7 @@
               <li>Shellshock (aka Bash bug)</li>
               <li>Open Redirects</li>
               <li>Uncommon HTTP methods that can be allowed (PUT)</li>
+              <li>CSRF (Cross Site Request Forgery)</li>
               <li>Basic CSP Evaluator </li>
               <li>Brute Force login form (using a dictionary list)</li>
               <li>Cheking HTTP security headers</li>
@@ -163,7 +164,8 @@
             </ul>
 
             <p>A buster module also allows to brute force directories and files names on the target webserver.</p>
-            
+            <p>A wapp module retrieves web technologies with versions and categories in use on the target.</p>
+
             <p>Wapiti supports both GET and POST HTTP methods for attacks.<br />
             It also supports multipart forms and can inject payloads in filenames (upload).<br />
             Warnings are raised when an anomaly is found (for example 500 errors and timeouts)<br />
@@ -180,11 +182,10 @@
                 <li>Adding a payload can be as easy as adding a line to a text file</li>
             </ul>
 
-
             <p>Browsing features</p>
             <ul>
                 <li>Support HTTP, HTTPS and SOCKS5 proxies</li>
-                <li>Authentication via several methods : Basic, Digest, Kerberos or NTLM</li>
+                <li>Authentication via several methods : Basic, Digest, Kerberos, NTLM or GET/POST on login forms</li>
                 <li>Ability to restrain the scope of the scan (domain, folder, page, url)</li>
                 <li>Automatic removal of one are more parameters in URLs</li>
                 <li>Multiple safeguards against scan endless-loops (ifor example, limit of values for a parameter)</li>
@@ -222,21 +223,22 @@
   ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝     ╚═╝   ╚═╝   ╚═╝╚═════╝
 Wapiti-3.0.3 (wapiti.sourceforge.net)
 usage: wapiti [-h] [-u URL] [--scope {page,folder,domain,url,punk}]
-              [-m MODULES_LIST] [--list-modules] [-l LEVEL] [-p PROXY_URL]
-              [--tor] [-a CREDENTIALS]
-              [--auth-type {basic,digest,kerberos,ntlm}] [-c COOKIE_FILE]
-              [--skip-crawl] [--resume-crawl] [--flush-attacks]
-              [--flush-session] [--store-session PATH] [-s URL] [-x URL]
-              [-r PARAMETER] [--skip PARAMETER] [-d DEPTH]
-              [--max-links-per-page MAX] [--max-files-per-dir MAX]
-              [--max-scan-time SECONDS] [--max-attack-time SECONDS]
-              [--max-parameters MAX] [-S FORCE] [-t SECONDS]
-              [-H HEADER] [-A AGENT] [--verify-ssl {0,1}]
+
+              [-m MODULES_LIST] [--list-modules] [--update] [-l LEVEL]
+              [-p PROXY_URL] [--tor] [-a CREDENTIALS]
+              [--auth-type {basic,digest,kerberos,ntlm,post}]
+              [-c COOKIE_FILE] [--skip-crawl] [--resume-crawl]
+              [--flush-attacks] [--flush-session] [--store-session PATH]
+              [--store-config] [-s URL] [-x URL] [-r PARAMETER]
+              [--skip PARAMETER] [-d DEPTH] [--max-links-per-page MAX]
+              [--max-files-per-dir MAX] [--max-scan-time SECONDS]
+              [--max-attack-time SECONDS] [--max-parameters MAX] [-S FORCE]
+              [-t SECONDS] [-H HEADER] [-A AGENT] [--verify-ssl {0,1}]
               [--color] [-v LEVEL] [-f FORMAT] [-o OUPUT_PATH]
               [--external-endpoint EXTERNAL_ENDPOINT_URL]
               [--internal-endpoint INTERNAL_ENDPOINT_URL]
               [--endpoint ENDPOINT_URL] [--no-bugreport] [--version]
-wapiti: error: one of the arguments -u/--url --list-modules is required
+wapiti: error: one of the arguments -u/--url --list-modules --update is required
 </pre>
 
 Shortest way (with default options) to launch a Wapiti scan :
