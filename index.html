@@ -114,10 +114,10 @@
                 <a href="https://sourceforge.net/projects/wapiti/files/"><img class="fleft" src="download_90.png" /></a>
                 <div class="fleft">
                     <p>Download Wapiti<br />
-                    Current stable version: 3.0.8<br />
-                    Release date: 2021-11-18</p>
+                    Current stable version: 3.0.9<br />
+                    Release date: 2021-12-15</p>
                 </div>
-                <a href="http://sourceforge.net/donate/index.php?group_id=168625"><img class="fright" src="donate.png" /></a>
+                <a href="https://sourceforge.net/donate/index.php?group_id=168625"><img class="fright" src="donate.png" /></a>
                 <div class="fright">
                     <p>Love this project ?<br />
                     Please consider making a donation</p>
@@ -139,7 +139,7 @@
             injecting payloads to see if a script is vulnerable.</p>
 
             <div class="clear"></div>
-            <h3>What's new in Wapiti 3.0.8 ? Take a look <a href="https://github.com/wapiti-scanner/wapiti/blob/master/doc/ChangeLog_Wapiti">here</a>.</h3>
+            <h3>What's new in Wapiti 3.0.9 ? Take a look <a href="https://github.com/wapiti-scanner/wapiti/blob/master/doc/ChangeLog_Wapiti">here</a>.</h3>
 
             <p>Wapiti modules cover:</p>
             <ul>
@@ -166,6 +166,7 @@
               <li>Fingerprinting of web applications using the Wappalyzer database</li>
               <li>Enumeration of Wordpress and Drupal modules</li>
               <li>Detection of subdomain takeovers vulnerabilities</li>
+              <li>Log4Shell vulnerability detection (CVE-2021-44228)</li>
             </ul>
 
             <p>Wapiti supports both GET and POST HTTP methods for attacks.<br />
@@ -207,7 +208,7 @@
 
             <p>Wapiti is a command-line application.<br />
             Here is <a href="example.txt">an exemple of output</a> against a vulnerable web application.<br />
-            You may find some useful informations in the <a href="https://github.com/wapiti-scanner/wapiti/blob/master/README.md">README</a>
+            You may find some useful informations in the <a href="https://github.com/wapiti-scanner/wapiti/blob/master/README.rst">README</a>
             and the <a href="https://github.com/wapiti-scanner/wapiti/blob/master/INSTALL.md">INSTALL</a> files.<br />
             Have any questions ? You may find answers in the <a href="https://github.com/wapiti-scanner/wapiti/blob/master/doc/FAQ.md">FAQ</a>.
             </p>
@@ -228,23 +229,24 @@
  ██║███╗██║██╔══██║██╔═══╝ ██║   ██║   ██║ ╚═══██╗
  ╚███╔███╔╝██║  ██║██║     ██║   ██║   ██║██████╔╝
   ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝     ╚═╝   ╚═╝   ╚═╝╚═════╝
-Wapiti-3.0.8 (wapiti.sourceforge.io)
+Wapiti-3.0.9 (wapiti.sourceforge.io)
 usage: wapiti [-h] [-u URL] [--scope {page,folder,domain,url,punk}]
               [-m MODULES_LIST] [--list-modules] [--update] [-l LEVEL]
               [-p PROXY_URL] [--tor] [-a CREDENTIALS]
               [--auth-type {basic,digest,ntlm,post}] [-c COOKIE_FILE]
               [--drop-set-cookie] [--skip-crawl] [--resume-crawl]
-              [--flush-attacks] [--flush-session]
-              [--store-session PATH] [--store-config PATH] [-s URL]
-              [-x URL] [-r PARAMETER] [--skip PARAMETER] [-d DEPTH]
-              [--max-links-per-page MAX] [--max-files-per-dir MAX]
-              [--max-scan-time SECONDS] [--max-attack-time SECONDS]
-              [--max-parameters MAX] [-S FORCE] [--tasks tasks]
-              [-t SECONDS] [-H HEADER] [-A AGENT] [--verify-ssl {0,1}]
-              [--color] [-v LEVEL] [-f FORMAT] [-o OUTPUT_PATH]
+              [--flush-attacks] [--flush-session] [--store-session PATH]
+              [--store-config PATH] [-s URL] [-x URL] [-r PARAMETER]
+              [--skip PARAMETER] [-d DEPTH] [--max-links-per-page MAX]
+              [--max-files-per-dir MAX] [--max-scan-time SECONDS]
+              [--max-attack-time SECONDS] [--max-parameters MAX] [-S FORCE]
+              [--tasks tasks] [-t SECONDS] [-H HEADER] [-A AGENT]
+              [--verify-ssl {0,1}] [--color] [-v LEVEL] [-f FORMAT]
+              [-o OUTPUT_PATH] [--log OUTPUT_PATH]
               [--external-endpoint EXTERNAL_ENDPOINT_URL]
               [--internal-endpoint INTERNAL_ENDPOINT_URL]
-              [--endpoint ENDPOINT_URL] [--no-bugreport] [--version]
+              [--dns-endpoint DNS_ENDPOINT_DOMAIN] [--endpoint ENDPOINT_URL]
+              [--no-bugreport] [--version]
 wapiti: error: one of the arguments -u/--url --list-modules --update is required
 </pre>
 
