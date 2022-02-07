@@ -111,11 +111,11 @@
     <body>
         <div id="header">
             <div class="wrapper">
-                <a href="https://sourceforge.net/projects/wapiti/files/"><img class="fleft" src="download_90.png" /></a>
+                <a href="https://github.com/wapiti-scanner/wapiti/releases"><img class="fleft" src="download_90.png" /></a>
                 <div class="fleft">
                     <p>Download Wapiti<br />
-                    Current stable version: 3.0.9<br />
-                    Release date: 2021-12-15</p>
+                    Current stable version: 3.1.0<br />
+                    Release date: 2022-02-06</p>
                 </div>
                 <a href="https://sourceforge.net/donate/index.php?group_id=168625"><img class="fright" src="donate.png" /></a>
                 <div class="fright">
@@ -139,7 +139,7 @@
             injecting payloads to see if a script is vulnerable.</p>
 
             <div class="clear"></div>
-            <h3>What's new in Wapiti 3.0.9 ? Take a look <a href="https://github.com/wapiti-scanner/wapiti/blob/master/doc/ChangeLog_Wapiti">here</a>.</h3>
+            <h3>What's new in Wapiti 3.1.0 ? Take a look <a href="https://github.com/wapiti-scanner/wapiti/blob/master/doc/ChangeLog_Wapiti">here</a>.</h3>
 
             <p>Wapiti modules cover:</p>
             <ul>
@@ -207,15 +207,15 @@
             </ul>
 
             <p>Wapiti is a command-line application.<br />
-            Here is <a href="example.txt">an exemple of output</a> against a vulnerable web application.<br />
-            You may find some useful informations in the <a href="https://github.com/wapiti-scanner/wapiti/blob/master/README.rst">README</a>
+            Here is <a href="example.txt">an example of output</a> against a vulnerable web application.<br />
+            You may find some useful information in the <a href="https://github.com/wapiti-scanner/wapiti/blob/master/README.rst">README</a>
             and the <a href="https://github.com/wapiti-scanner/wapiti/blob/master/INSTALL.md">INSTALL</a> files.<br />
             Have any questions ? You may find answers in the <a href="https://github.com/wapiti-scanner/wapiti/blob/master/doc/FAQ.md">FAQ</a>.
             </p>
 
             <h2>Download</h2>
 
-            <p><a href="https://sourceforge.net/projects/wapiti/files/" lang="en">&gt;&gt; Download Wapiti here &lt;&lt;</a></p><br />
+            <p><a href="https://github.com/wapiti-scanner/wapiti/releases" lang="en">&gt;&gt; Download Wapiti here &lt;&lt;</a></p><br />
             <p>or install it easily using PIP:</p>
             <pre>pip install wapiti3</pre>
 
@@ -229,7 +229,7 @@
  ██║███╗██║██╔══██║██╔═══╝ ██║   ██║   ██║ ╚═══██╗
  ╚███╔███╔╝██║  ██║██║     ██║   ██║   ██║██████╔╝
   ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝     ╚═╝   ╚═╝   ╚═╝╚═════╝
-Wapiti-3.0.9 (wapiti.sourceforge.io)
+Wapiti 3.1.0 (wapiti-scanner.github.io)
 usage: wapiti [-h] [-u URL] [--scope {page,folder,domain,url,punk}]
               [-m MODULES_LIST] [--list-modules] [--update] [-l LEVEL]
               [-p PROXY_URL] [--tor] [-a CREDENTIALS]
@@ -240,12 +240,11 @@ usage: wapiti [-h] [-u URL] [--scope {page,folder,domain,url,punk}]
               [--skip PARAMETER] [-d DEPTH] [--max-links-per-page MAX]
               [--max-files-per-dir MAX] [--max-scan-time SECONDS]
               [--max-attack-time SECONDS] [--max-parameters MAX] [-S FORCE]
-              [--tasks tasks] [-t SECONDS] [-H HEADER] [-A AGENT]
-              [--verify-ssl {0,1}] [--color] [-v LEVEL] [-f FORMAT]
-              [-o OUTPUT_PATH] [--log OUTPUT_PATH]
-              [--external-endpoint EXTERNAL_ENDPOINT_URL]
+              [--tasks tasks] [--external-endpoint EXTERNAL_ENDPOINT_URL]
               [--internal-endpoint INTERNAL_ENDPOINT_URL]
-              [--dns-endpoint DNS_ENDPOINT_DOMAIN] [--endpoint ENDPOINT_URL]
+              [--endpoint ENDPOINT_URL] [--dns-endpoint DNS_ENDPOINT_DOMAIN]
+              [-t SECONDS] [-H HEADER] [-A AGENT] [--verify-ssl {0,1}] [--color]
+              [-v LEVEL] [--log OUTPUT_PATH] [-f FORMAT] [-o OUTPUT_PATH]
               [--no-bugreport] [--version]
 wapiti: error: one of the arguments -u/--url --list-modules --update is required
 </pre>
@@ -253,8 +252,8 @@ wapiti: error: one of the arguments -u/--url --list-modules --update is required
 Shortest way (with default options) to launch a Wapiti scan :
 <pre>wapiti -u http://target/</pre>
 
-<p>Every option is detailed in the <a href="wapiti.1.html">wapiti(1) manpage</a>.</p>
-<p>Wapiti also comes with an utility to fetch cookies from websites called wapiti-getcookie. The corresponding manpage is <a href="wapiti-getcookie.1.html">here</a>.</p>
+<p>Every option is detailed in the <a href="https://github.com/wapiti-scanner/wapiti/blob/master/doc/wapiti.ronn">wapiti(1) manpage</a>.</p>
+<p>Wapiti also comes with an utility to fetch cookies from websites called wapiti-getcookie. The corresponding manpage is <a href="https://github.com/wapiti-scanner/wapiti/blob/master/doc/wapiti-getcookie.ronn">here</a>.</p>
 <br />
             <h2>Licensing</h2>
             <p>Wapiti is released under the <a href="https://www.gnu.org/licenses/gpl-2.0.html">GNU General Public License version 2 (the GPL).</a></p>
@@ -264,7 +263,7 @@ Shortest way (with default options) to launch a Wapiti scan :
     <div id="footer">
         <div class="wrapper">
             <p>
-            Copyright 2006-2021 &copy; <a href="http://devloop.users.sf.net/">Nicolas Surribas</a> (<a href="https://twitter.com/devl00p">@devl00p</a>)<br />
+            Copyright 2006-2022 &copy; <a href="http://devloop.users.sf.net/">Nicolas Surribas</a> (<a href="https://twitter.com/devl00p">@devl00p</a>)<br />
             Logo by <a href="http://www.gimp-attitude.org/">Gimp-Attitude</a> (thanks to <em>Le Gnou</em> &amp; <em>Ecirbaf</em>)
             </p>
         </div>
