@@ -231,23 +231,28 @@
  ██║███╗██║██╔══██║██╔═══╝ ██║   ██║   ██║ ╚═══██╗
  ╚███╔███╔╝██║  ██║██║     ██║   ██║   ██║██████╔╝
   ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝     ╚═╝   ╚═╝   ╚═╝╚═════╝
-Wapiti 3.1.5 (wapiti-scanner.github.io)
-usage: wapiti [-h] [-u URL] [--data data] [--scope {page,folder,domain,url,punk}]
-              [-m MODULES_LIST] [--list-modules] [-l LEVEL] [-p PROXY_URL] [--tor]
-              [--mitm-port PORT] [--headless PORT] [--wait TIME] [-a CREDENTIALS]
-              [--auth-method {basic,digest,ntlm}] [--form-cred CREDENTIALS] [--form-url URL]
-              [--form-data DATA] [--form-enctype DATA] [--form-script FILENAME] [-c COOKIE_FILE]
-              [--drop-set-cookie] [--skip-crawl] [--resume-crawl] [--flush-attacks]
-              [--flush-session] [--store-session PATH] [--store-config PATH] [-s URL] [-x URL]
-              [-r PARAMETER] [--skip PARAMETER] [-d DEPTH] [--max-links-per-page MAX]
-              [--max-files-per-dir MAX] [--max-scan-time SECONDS] [--max-attack-time SECONDS]
-              [--max-parameters MAX] [-S FORCE] [--tasks tasks]
-              [--external-endpoint EXTERNAL_ENDPOINT_URL]
+Wapiti 3.1.8 (wapiti-scanner.github.io)
+usage: wapiti [-h] [-u URL] [--swagger URI] [--data data]
+              [--scope {url,page,folder,subdomain,domain,punk}] [-m MODULES_LIST]
+              [--list-modules] [-l LEVEL] [-p PROXY_URL] [--tor] [--mitm-port PORT]
+              [--headless {no,hidden,visible}] [--wait TIME] [-a CREDENTIALS]
+              [--auth-user USERNAME] [--auth-password PASSWORD]
+              [--auth-method {basic,digest,ntlm}] [--form-cred CREDENTIALS]
+              [--form-user USERNAME] [--form-password PASSWORD] [--form-url URL]
+              [--form-data DATA] [--form-enctype DATA] [--form-script FILENAME]
+              [-c COOKIE_FILE] [--drop-set-cookie] [--skip-crawl] [--resume-crawl]
+              [--flush-attacks] [--flush-session] [--store-session PATH]
+              [--store-config PATH] [-s URL] [-x URL] [-r PARAMETER]
+              [--skip PARAMETER] [-d DEPTH] [--max-links-per-page MAX]
+              [--max-files-per-dir MAX] [--max-scan-time SECONDS]
+              [--max-attack-time SECONDS] [--max-parameters MAX] [-S FORCE]
+              [--tasks tasks] [--external-endpoint EXTERNAL_ENDPOINT_URL]
               [--internal-endpoint INTERNAL_ENDPOINT_URL] [--endpoint ENDPOINT_URL]
               [--dns-endpoint DNS_ENDPOINT_DOMAIN] [-t SECONDS] [-H HEADER] [-A AGENT]
-              [--verify-ssl {0,1}] [--color] [-v LEVEL] [--log OUTPUT_PATH] [-f FORMAT]
-              [-o OUTPUT_PATH] [-dr] [--no-bugreport] [--update] [--version]
-wapiti: error: one of the arguments -u/--url --list-modules --update is required
+              [--verify-ssl {0,1}] [--color] [-v LEVEL] [--log OUTPUT_PATH]
+              [-f FORMAT] [-o OUTPUT_PATH] [-dr DETAILED_REPORT_LEVEL]
+              [--no-bugreport] [--update] [--version] [--cms CMS_LIST]
+              [--wapp-url WAPP_URL] [--wapp-dir WAPP_DIR]
 </pre>
 
 Shortest way (with default options) to launch a Wapiti scan :
