@@ -114,8 +114,8 @@
         <a href="https://github.com/wapiti-scanner/wapiti/releases"><img class="fleft" src="download_90.png"/></a>
         <div class="fleft">
             <p>Download Wapiti<br/>
-                Current stable version: 3.2.8<br/>
-                Release date: 2025-10-25</p>
+                Current stable version: 3.3.0<br/>
+                Release date: 2026-05-13</p>
         </div>
         <a href="https://sourceforge.net/donate/index.php?group_id=168625"><img class="fright" src="donate.png"/></a>
         <div class="fright">
@@ -140,12 +140,13 @@
         injecting payloads to see if a script is vulnerable.</p>
 
     <div class="clear"></div>
-    <h3>What's new in Wapiti 3.2.8 ? Take a look <a
+    <h3>What's new in Wapiti 3.3.0 ? Take a look <a
             href="https://github.com/wapiti-scanner/wapiti/blob/master/doc/ChangeLog_Wapiti">here</a>.</h3>
 
     <p>Wapiti modules cover:</p>
     <ul>
         <li>SQL Injections (Error based, boolean based, time based) and XPath Injections</li>
+        <li>LDAP injections (Error based and boolean based)</li>
         <li>Cross Site Scripting (XSS) reflected and permanent</li>
         <li>File disclosure detection (local and remote include, require, fopen,
             readfile...)
@@ -166,11 +167,16 @@
         <li>Checking HTTP security headers</li>
         <li>Checking cookie security flags (secure and httponly flags)</li>
         <li>Cross Site Request Forgery (CSRF) basic detection</li>
-        <li>Fingerprinting of web applications using the Wappalyzer database</li>
-        <li>Enumeration of popular CMS (Drupal, Joomla, Prestashop, SPIP, Wordpress)</li>
+        <li>Fingerprinting of web applications using the Wappalyzer database, gives related CVE information</li>
+        <li>Enumeration of popular CMS (Drupal, Joomla, Magento, Prestashop, SPIP, Typo3, Wordpress, etc)</li>
         <li>Detection of subdomain takeovers vulnerabilities</li>
         <li>Log4Shell vulnerability detection (CVE-2021-44228)</li>
-        <li>Check for TLS misconfiguration and vulnerabilities (thanks to SSLyze)</li>
+        <li>Spring4Shell (CVE-2022-22965) detection</li>
+        <li>Check https redirections</li>
+        <li>Check for file upload vulnerabilities</li>
+        <li>Detection of network devices</li>
+        <li>Inject payloads inside JSON body too</li>
+        <li>Check for TLS misconfiguration and vulnerabilities (thanks to <a href="https://github.com/rbsec/sslscan">sslscan</a>)</li>
     </ul>
 
     <p>Wapiti supports both GET and POST HTTP methods for attacks.<br/>
@@ -181,7 +187,7 @@
 
     <p>General features :</p>
     <ul>
-        <li>Generates vulnerability reports in various formats (HTML, XML, JSON, TXT, CSV)</li>
+        <li>Generates vulnerability reports in various formats (HTML, XML, JSON, TXT, CSV, Markdown)</li>
         <li>Can suspend and resume a scan or an attack (session mechanism using sqlite3 databases)</li>
         <li>Can give you colors in the terminal to highlight vulnerabilities</li>
         <li>Different levels of verbosity</li>
@@ -193,15 +199,16 @@
     <p>Browsing features</p>
     <ul>
         <li>Support HTTP, HTTPS and SOCKS5 proxies</li>
-        <li>Authentication via several methods : Basic, Digest, NTLM or GET/POST on login forms</li>
+        <li>HTTP authentication on the target (Basic, Digest, NTLM)</li>
+        <li>Authentication by filling login forms</li>
         <li>Ability to restrain the scope of the scan (domain, folder, page, url)</li>
-        <li>Automatic removal of one are more parameters in URLs</li>
+        <li>Automatic removal of one or more parameters in URLs</li>
         <li>Multiple safeguards against scan endless-loops (for example, limit of values for a parameter)</li>
         <li>Possibility to set the first URLs to explore (even if not in scope)</li>
         <li>Can exclude some URLs of the scan and attacks (eg: logout URL)</li>
         <li>Import cookies from your Chrome or Firefox browser or using the wapiti-getcookie tool</li>
         <li>Can activate / deactivate SSL certificates verification</li>
-        <li>Extract URLs from Flash SWF files</li>
+        <li>Try to extract URLs from javascript (very basic JS interpreter)</li>
         <li>HTML5 aware (understand recent HTML tags)</li>
         <li>Several options to control the crawler behavior and limits.</li>
         <li>Skipping some parameter names during attack.</li>
@@ -209,7 +216,9 @@
         <li>Adding some custom HTTP headers or setting a custom User-Agent.</li>
         <li>Man-In-The-Middle proxy support to explore the target by using your browser</li>
         <li>Automated browsing using Firefox in headless mode</li>
-        <li>Automated API testing thanks to Swagger/openapi support</li>
+        <li>Loading your own python code for complicated authentication cases (see --form-script option)</li>
+        <li>Adding custom URL or PATH to update Wappalyzer database</li>
+        <li>Scan REST APIs given an OpenAPI (swagger) file</li>
     </ul>
 
     <p>Wapiti is a command-line application.<br/>
@@ -230,35 +239,38 @@
 
 
     <h2>Usage</h2>
-    <pre>
-
- ██╗    ██╗ █████╗ ██████╗ ██╗████████╗██╗██████╗
- ██║    ██║██╔══██╗██╔══██╗██║╚══██╔══╝██║╚════██╗
- ██║ █╗ ██║███████║██████╔╝██║   ██║   ██║ █████╔╝
- ██║███╗██║██╔══██║██╔═══╝ ██║   ██║   ██║ ╚═══██╗
- ╚███╔███╔╝██║  ██║██║     ██║   ██║   ██║██████╔╝
-  ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝     ╚═╝   ╚═╝   ╚═╝╚═════╝
-Wapiti 3.2.8 (wapiti-scanner.github.io)
-usage: wapiti [-h] [-u URL] [--swagger URI] [--data data]
-              [--scope {url,page,folder,subdomain,domain,punk}] [-m MODULES_LIST]
-              [--list-modules] [-l LEVEL] [-p PROXY_URL] [--tor] [--mitm-port PORT]
-              [--headless {no,hidden,visible}] [--wait TIME] [-a CREDENTIALS]
-              [--auth-user USERNAME] [--auth-password PASSWORD]
-              [--auth-method {basic,digest,ntlm}] [--form-cred CREDENTIALS]
-              [--form-user USERNAME] [--form-password PASSWORD] [--form-url URL]
-              [--form-data DATA] [--form-enctype DATA] [--form-script FILENAME]
-              [-c COOKIE_FILE] [-sf SIDE_FILE] [-C COOKIE_VALUE] [--drop-set-cookie]
-              [--skip-crawl] [--resume-crawl] [--flush-attacks] [--flush-session]
-              [--store-session PATH] [--store-config PATH] [-s URL] [-x URL] [-r PARAMETER]
+    <pre>usage: wapiti [-h] [-u URL] [--swagger URI] [--data data]
+              [--scope {url,page,folder,subdomain,domain,punk}]
+              [-m MODULES_LIST] [--list-modules] [-l LEVEL] [-p PROXY_URL]
+              [--tor] [--mitm-port PORT] [--headless {no,hidden,visible,both}]
+              [--wait TIME] [-a CREDENTIALS] [--auth-user USERNAME]
+              [--auth-password PASSWORD] [--auth-method {basic,digest,ntlm}]
+              [--form-cred CREDENTIALS] [--form-user USERNAME]
+              [--form-password PASSWORD] [--form-url URL] [--form-data DATA]
+              [--form-enctype DATA] [--form-script FILENAME] [-c COOKIE_FILE]
+              [-sf SIDE_FILE] [-C COOKIE_VALUE] [--jwt JWT]
+              [--drop-set-cookie] [--skip-crawl] [--resume-crawl]
+              [--flush-attacks] [--flush-session] [--store-session PATH]
+              [--store-config PATH] [-s URL] [-x URL] [-r PARAMETER]
               [--skip PARAMETER] [-d DEPTH] [--max-links-per-page MAX]
-              [--max-files-per-dir MAX] [--max-scan-time SECONDS] [--max-attack-time SECONDS]
-              [--max-parameters MAX] [-S FORCE] [--tasks tasks]
-              [--external-endpoint EXTERNAL_ENDPOINT_URL]
-              [--internal-endpoint INTERNAL_ENDPOINT_URL] [--endpoint ENDPOINT_URL]
-              [--dns-endpoint DNS_ENDPOINT_DOMAIN] [-t SECONDS] [-H HEADER] [-A AGENT]
-              [--verify-ssl {0,1}] [--color] [-v LEVEL] [--log OUTPUT_PATH] [-f FORMAT]
-              [-o OUTPUT_PATH] [-dr DETAILED_REPORT_LEVEL] [--no-bugreport] [--update]
-              [--version] [--cms CMS_LIST] [--wapp-url WAPP_URL] [--wapp-dir WAPP_DIR]
+              [--max-files-per-dir MAX] [--max-scan-time SECONDS]
+              [--max-attack-time SECONDS] [--max-parameters MAX] [-S FORCE]
+              [--tasks tasks] [--external-endpoint EXTERNAL_ENDPOINT_URL]
+              [--internal-endpoint INTERNAL_ENDPOINT_URL]
+              [--endpoint ENDPOINT_URL] [--dns-endpoint DNS_ENDPOINT_DOMAIN]
+              [-t SECONDS] [-H HEADER] [-A AGENT] [--verify-ssl {0,1}]
+              [--color] [-v LEVEL] [--log OUTPUT_PATH] [-f FORMAT]
+              [-o OUTPUT_PATH] [-dr DETAILED_REPORT_LEVEL] [--no-bugreport]
+              [--update] [--version] [--cms CMS_LIST] [--wapp-url WAPP_URL]
+              [--wapp-dir WAPP_DIR]
+
+
+     __      __               .__  __  .__________
+    /  \    /  \_____  ______ |__|/  |_|__\_____  \
+    \   \/\/   /\__  \ \____ \|  \   __\  | _(__  <
+     \        /  / __ \|  |_> >  ||  | |  |/       \
+      \__/\  /  (____  /   __/|__||__| |__/______  /
+           \/        \/|__|                      \/
 </pre>
 
     Shortest way (with default options) to launch a Wapiti scan :
@@ -281,14 +293,15 @@ usage: wapiti [-h] [-u URL] [--swagger URI] [--data data]
                                                     width="250"/></a></p>
     <p>&nbsp; <a href="https://securityforeveryone.com/"><img src="sponsors/s4e-logo.png" alt="Security For Everyone"/></a>
     </p>
-
+    <p>&nbsp; <a href="https://ip-ninja.com/"><img src="sponsors/ipninja_logo.png" alt="IP Ninja" width="200"/></a>
+    </p>
     <br/>
 </div>
 <div id="linediv"></div>
 <div id="footer">
     <div class="wrapper">
         <p>
-            Copyright 2006-2025 &copy; <a href="https://devl00p.github.io/">Nicolas Surribas</a> (<a
+            Copyright 2006-2026 &copy; <a href="https://devl00p.github.io/">Nicolas Surribas</a> (<a
                 href="https://twitter.com/devl00p">@devl00p</a>)<br/>
             Logo by <a href="http://www.gimp-attitude.org/">Gimp-Attitude</a> (thanks to <em>Le Gnou</em> &amp; <em>Ecirbaf</em>)
         </p>
